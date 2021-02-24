@@ -18,8 +18,10 @@ jobs:
         run: |
           mkdir -p $GITHUB_WORKSPACE/bin
           export PATH=$PATH:$GITHUB_WORKSPACE/bin
-          wget -O $GITHUB_WORKSPACE/temp/helm https://github.com/helm/helm/releases/download/v3.5.2/helm-v3.5.2-linux-amd64.tar.gz.asc
-          tar -zxvf $GITHUB_WORKSPACE/temp/helm
-          mv $GITHUB_WORKSPACE/temp/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
+          curl https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz --output helm.temp.tar
+          mkdir helm.temp.bin
+          tar -zxvf helm.temp.tar -C helm.temp.bin
+          mv helm.temp.bin/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
+          rm -rf helm.temp.bin helm.temp.tar
           chmod +x $GITHUB_WORKSPACE/bin/helm
           helm --help

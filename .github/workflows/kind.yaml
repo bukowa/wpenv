@@ -8,3 +8,7 @@ jobs:
     steps:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
+      - name: help
+        run: kind --help
+      - name: version
+        run: kind --version

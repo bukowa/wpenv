@@ -15,7 +15,6 @@ jobs:
           config: ./scripts/kind.config.yaml
 
       - name: kind version
-        uses: actions/checkout@v2
         run: kind --version
 
       - name: kubectl cluster-info

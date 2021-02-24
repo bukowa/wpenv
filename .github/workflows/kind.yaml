@@ -43,6 +43,12 @@ jobs:
         working-directory: ./scripts
         run: sudo cp ./cert.crt /usr/local/share/ca-certificates/kind-ingress.crt && sudo update-ca-certificates
 
+      - name: docker ps
+        run: docker ps
+      
+      - name: wait for nging
+        run: docker run --rm -it quay.io/dim/wfi localhost:32080 -t 180
+
       - name: check nginx http
         run: curl http://localhost:32080
           # '[[ "$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:32080)" == 404 ]] || echo fail && exit 1'

@@ -6,7 +6,6 @@ NAMESPACE="ingress-nginx"
 if [ "$1" == "kind" ]; then
     kind delete cluster || true
     kind create cluster --config=./kind.config.yaml --wait=240s
-  exit 0
 fi
 
 NAMESPACE=$NAMESPACE ./generate_certs.sh

@@ -1,0 +1,16 @@
+name: kubernetes
+
+on: [push, pull_request]
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: install kind
+        run: |
+          wget -O /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/v0.10.0/kind-linux-amd64
+          kind --help
+          

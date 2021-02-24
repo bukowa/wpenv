@@ -25,7 +25,6 @@ jobs:
           mv helm.temp.bin/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
           rm -rf helm.temp.bin helm.temp.tar
           chmod +x $GITHUB_WORKSPACE/bin/helm
-          helm --version
       
       - name: install nginx-ingress
         run: chmod +x ./scripts/nginx-ingress.sh && ./scripts/nginx-ingress.sh install

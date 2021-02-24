@@ -1,0 +1,5 @@
+controller:
+  config:
+    use-proxy-protocol: 'true'
+  extraArgs:
+    default-ssl-certificate: "ingress-nginx/tls-default"

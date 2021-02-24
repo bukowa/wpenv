@@ -14,3 +14,12 @@ jobs:
         run: kind --version
       - name: kubectl
         run: kubectl cluster-info
+      - name: install helm
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/bin
+          export PATH=$PATH:$GITHUB_WORKSPACE/bin
+          wget -O $GITHUB_WORKSPACE/temp/helm https://github.com/helm/helm/releases/download/v3.5.2/helm-v3.5.2-linux-amd64.tar.gz.asc
+          tar -zxvf $GITHUB_WORKSPACE/temp/helm
+          mv $GITHUB_WORKSPACE/temp/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
+          chmod +x $GITHUB_WORKSPACE/bin/helm
+          helm --help

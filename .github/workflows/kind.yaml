@@ -47,7 +47,7 @@ jobs:
         run: docker ps
       
       - name: wait for nging
-        run: docker run --rm quay.io/dim/wfi localhost:32080 -t 180
+        run: docker run --rm --network=host quay.io/dim/wfi localhost:32080 -t 180
 
       - name: check nginx http
         run: curl http://localhost:32080

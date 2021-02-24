@@ -41,5 +41,5 @@ jobs:
       
       - name: trust certs
         working-directory: ./scripts
-        run: cp ./cert.crt /usr/local/share/ca-certificates/kind-ingress.crt && update-ca-certificates
+        run: sudo cp ./cert.crt /usr/local/share/ca-certificates/kind-ingress.crt && sudo update-ca-certificates
 

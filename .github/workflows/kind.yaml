@@ -7,9 +7,6 @@ jobs:
 
   create-cluster:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: $GITHUB_WORKSPACE
 
     steps:
       - name: checkout
@@ -36,9 +33,7 @@ jobs:
           mv helm.temp.bin/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
           rm -rf helm.temp.bin helm.temp.tar
           chmod +x $GITHUB_WORKSPACE/bin/helm
-      
-      - name: good job!@#
-        run: ls -al
 
       - name: install nginx-ingress
-        run: chmod +x ./scripts/nginx-ingress.sh && ./scripts/nginx-ingress.sh install
+        working-directory: ./scripts
+        run: chmod +x nginx-ingress.sh && nginx-ingress.sh install

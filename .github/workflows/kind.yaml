@@ -2,14 +2,20 @@ name: Create Cluster
 
 on: [push, pull_request]
 
+
 jobs:
+
   create-cluster:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: $GITHUB_WORKSPACE
+
     steps:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
         with:
-          config: $GITHUB_WORKSPACE/scripts/kind.config.yaml
+          config: ./scripts/kind.config.yaml
 
       - name: kind version
         run: kind --version

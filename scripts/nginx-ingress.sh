@@ -32,6 +32,17 @@ if [ "$1" == "upgrade" ]; then
   exit 0
 fi
 
+if [ "$1" == "uninstall" ]; then
+  echo "Uninstalling..."
+  helm uninstall -n $NAMESPACE \
+    nginx-ingress
+  exit 0
+fi
+
 
 echo "Wrong argument provided: $1"
 exit 1
+
+
+# kubectl get -n $NAMESPACE service nginx-ingress-ingress-nginx-controller -o jsonpath='{.spec.ports[?(@.name=="http")].nodePort}'
+# kubectl -n $NAMESPACE port-forward service/nginx-ingress-ingress-nginx-controller 443

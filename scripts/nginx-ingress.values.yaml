@@ -1,5 +1,10 @@
 controller:
-  config:
-    use-proxy-protocol: 'true'
-  extraArgs:
-    default-ssl-certificate: "ingress-nginx/tls-default"
+  # config:
+  #   use-proxy-protocol: 'true'
+  # extraArgs:
+  #   default-ssl-certificate: "ingress-nginx/tls-default"
+  service:
+    type: NodePort
+    nodePorts:
+      http: 32080
+      https: 32443

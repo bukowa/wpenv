@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Create k8s Kind Cluster
         uses: helm/kind-action@v1.1.0
+        with:
+          config: ./scripts/kind.config.yaml
 
       - name: kind version
         run: kind --version
@@ -26,5 +28,8 @@ jobs:
           rm -rf helm.temp.bin helm.temp.tar
           chmod +x $GITHUB_WORKSPACE/bin/helm
       
+      - name: good job!@#
+        run: ls -al
+
       - name: install nginx-ingress
         run: chmod +x ./scripts/nginx-ingress.sh && ./scripts/nginx-ingress.sh install

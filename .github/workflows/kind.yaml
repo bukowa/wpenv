@@ -36,4 +36,4 @@ jobs:
 
       - name: install nginx-ingress
         working-directory: ./scripts
-        run: chmod +x nginx-ingress.sh && nginx-ingress.sh install
+        run: chmod +x ./nginx-ingress.sh && ./nginx-ingress.sh install

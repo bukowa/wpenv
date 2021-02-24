@@ -12,3 +12,5 @@ jobs:
         run: kind --help
       - name: version
         run: kind --version
+      - name: kubectl
+        run: kubectl cluster-info

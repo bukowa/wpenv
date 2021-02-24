@@ -44,7 +44,11 @@ jobs:
         run: sudo cp ./cert.crt /usr/local/share/ca-certificates/kind-ingress.crt && sudo update-ca-certificates
 
       - name: check nginx http
-        run: '[[ "$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:32080)" == 404 ]] || echo fail && exit 1'
+        run: |
+          curl -s http://localhost:32080
+          '[[ "$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:32080)" == 404 ]] || echo fail && exit 1'
 
       - name: check nginx https
-        run: '[[ "$(curl -o /dev/null -s -w "%{http_code}\n" https://localhost:32443)" == 404 ]] || echo fail && exit 1'
+        run: |
+          curl -s https://localhost:32443
+          '[[ "$(curl -o /dev/null -s -w "%{http_code}\n" https://localhost:32443)" == 404 ]] || echo fail && exit 1'

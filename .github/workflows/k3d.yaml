@@ -13,7 +13,7 @@ jobs:
         run: |
           mkdir -p $GITHUB_WORKSPACE/bin
           export PATH=$PATH:$GITHUB_WORKSPACE/bin
-          curl https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64 --output=$GITHUB_WORKSPACE/bin/k3d
+          curl https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64 --output $GITHUB_WORKSPACE/bin/k3d
           curl https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz --output helm.temp.tar
           mkdir helm.temp.bin
           tar -zxvf helm.temp.tar -C helm.temp.bin

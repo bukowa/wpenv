@@ -28,7 +28,7 @@ jobs:
       #     chmod +x $GITHUB_WORKSPACE/bin/k3d
       
       - name: helm
-        run: helm --help
+        run: helm version
 
       - name: k3d
         run: k3d --help

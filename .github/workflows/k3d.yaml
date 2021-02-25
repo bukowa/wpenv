@@ -27,6 +27,9 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/bin/helm
           chmod +x $GITHUB_WORKSPACE/bin/k3d
 
+      - name: k3d
+        run: k3d --help
+        
       - name: prepare env
         working-directory: ./scripts
         run: chmod +x ./setup_env.sh && ./setup_env.sh

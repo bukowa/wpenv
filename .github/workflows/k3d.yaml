@@ -26,10 +26,13 @@ jobs:
           rm -rf helm.temp.bin helm.temp.tar
           chmod +x $GITHUB_WORKSPACE/bin/helm
           chmod +x $GITHUB_WORKSPACE/bin/k3d
-
+      
+      - name: helm
+        run: helm --help
+        
       - name: k3d
         run: k3d --help
-        
+
       - name: prepare env
         working-directory: ./scripts
         run: chmod +x ./setup_env.sh && ./setup_env.sh

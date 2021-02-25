@@ -9,11 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: checkout
+        uses: actions/checkout@v2
+      
       - name: install k3d & helm
         run: |
           mkdir -p $GITHUB_WORKSPACE/bin
           export PATH=$PATH:$GITHUB_WORKSPACE/bin
-          curl https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64
+          curl -L https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64 --output k3d-linux-amd64
           mv k3d-linux-amd64 $GITHUB_WORKSPACE/bin/k3d
           curl https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz --output helm.temp.tar
           mkdir helm.temp.bin
@@ -23,9 +27,6 @@ jobs:
           chmod +x $GITHUB_WORKSPACE/bin/helm
           chmod +x $GITHUB_WORKSPACE/bin/k3d
 
-      - name: checkout
-        uses: actions/checkout@v2
-      
       - name: prepare env
         working-directory: ./scripts
         run: chmod +x ./setup_env.sh && ./setup_env.sh

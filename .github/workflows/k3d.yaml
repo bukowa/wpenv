@@ -1,0 +1,30 @@
+name: Create Cluster
+
+on: [push, pull_request]
+
+
+jobs:
+
+  create-cluster:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: install k3d & helm
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/bin
+          export PATH=$PATH:$GITHUB_WORKSPACE/bin
+          curl https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64 --output=$GITHUB_WORKSPACE/bin/k3d
+          curl https://get.helm.sh/helm-v3.5.2-linux-amd64.tar.gz --output helm.temp.tar
+          mkdir helm.temp.bin
+          tar -zxvf helm.temp.tar -C helm.temp.bin
+          mv helm.temp.bin/linux-amd64/helm $GITHUB_WORKSPACE/bin/helm
+          rm -rf helm.temp.bin helm.temp.tar
+          chmod +x $GITHUB_WORKSPACE/bin/helm
+          chmod +x $GITHUB_WORKSPACE/bin/k3d
+
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: prepare env
+        working-directory: ./scripts
+        run: chmod +x ./setup_env.sh && ./setup_env.sh

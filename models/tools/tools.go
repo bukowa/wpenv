@@ -1,4 +1,4 @@
-package models
+package tools
 
 // +build tools
 

@@ -2,7 +2,7 @@ GOLANG_TAG?=wpenv_proto_golang
 PYTHON_TAG?=wpenv_proto_python
 GRPC_TAG?=wpenv_proto_grpc
 
-all: build_golang build_python gen_golang gen_python build_grpc_gateway gen_grpc_gateway
+all: build_golang build_python build_grpc_gateway gen_golang gen_python gen_grpc_gateway
 build: build_golang build_grpc_gateway build_python
 gen: gen_golang gen_python gen_grpc_gateway
 
@@ -26,6 +26,13 @@ gen_grpc_gateway:
     --grpc-gateway_opt logtostderr=true \
     --grpc-gateway_opt generate_unbound_methods=true \
     ./user.proto
+
+gen_grpc_openapi:
+	docker run --rm --volume=${PWD}:/app \
+		${GRPC_TAG} \
+	-I . --openapiv2_out ./openapi/gen \
+	--openapiv2_opt logtostderr=true \
+	./user.proto
 
 gen_golang:
 	docker run --rm --volume=${PWD}:/app \

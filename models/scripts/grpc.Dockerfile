@@ -14,5 +14,3 @@ RUN printf '#!/bin/bash\n \
 
 WORKDIR /app
 ENTRYPOINT [ "/scripts/install.sh" ]
-
-

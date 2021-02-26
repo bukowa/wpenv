@@ -12,6 +12,7 @@ _sym_db = _symbol_database.Default()
 
 
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
+from google.api import annotations_pb2 as google_dot_api_dot_annotations__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -20,9 +21,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'Z\005./gen',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\nuser.proto\x12\x06models\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9f\x01\n\x04User\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12+\n\x07\x63reated\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_updated\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x64\x65leted\x18\x06 \x01(\x08\x32\x32\n\nCreateUser\x12$\n\x04\x45\x63ho\x12\x0c.models.User\x1a\x0c.models.User\"\x00\x42\x07Z\x05./genb\x06proto3'
+  serialized_pb=b'\n\nuser.proto\x12\x06models\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto\"\x9f\x01\n\x04User\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x05\x12\r\n\x05\x65mail\x18\x03 \x01(\t\x12+\n\x07\x63reated\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x30\n\x0clast_updated\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x0f\n\x07\x64\x65leted\x18\x06 \x01(\x08\x32L\n\nCreateUser\x12>\n\x04\x45\x63ho\x12\x0c.models.User\x1a\x0c.models.User\"\x1a\x82\xd3\xe4\x93\x02\x14\"\x0f/v1/user/create:\x01*B\x07Z\x05./genb\x06proto3'
   ,
-  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
+  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,google_dot_api_dot_annotations__pb2.DESCRIPTOR,])
 
 
 
@@ -89,8 +90,8 @@ _USER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=56,
-  serialized_end=215,
+  serialized_start=86,
+  serialized_end=245,
 )
 
 _USER.fields_by_name['created'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
@@ -115,8 +116,8 @@ _CREATEUSER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=217,
-  serialized_end=267,
+  serialized_start=247,
+  serialized_end=323,
   methods=[
   _descriptor.MethodDescriptor(
     name='Echo',
@@ -125,7 +126,7 @@ _CREATEUSER = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_USER,
     output_type=_USER,
-    serialized_options=None,
+    serialized_options=b'\202\323\344\223\002\024\"\017/v1/user/create:\001*',
     create_key=_descriptor._internal_create_key,
   ),
 ])

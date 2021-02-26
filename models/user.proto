@@ -1,0 +1,21 @@
+syntax = "proto3";
+package models;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "./models";
+
+message User {
+    string name = 1;
+    int32 id = 2;  // Unique ID number for this person.
+    string email = 3;
+
+    google.protobuf.Timestamp created = 4;
+    google.protobuf.Timestamp last_updated = 5;
+
+    bool deleted = 6;
+  }
+
+  service CreateUser {
+    rpc Echo(User) returns (User) {}
+  }

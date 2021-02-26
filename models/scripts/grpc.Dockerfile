@@ -9,7 +9,7 @@ RUN printf '#!/bin/bash\n \
     github.com/grpc-ecosystem/grpc-gateway/v2/protoc-gen-openapiv2 \
     google.golang.org/protobuf/cmd/protoc-gen-go \
     google.golang.org/grpc/cmd/protoc-gen-go-grpc \
-    && protoc $@ && go mod vendor && go mod tidy' > ./install.sh \
+    && protoc $@' > ./install.sh \
     && chmod +x ./install.sh
 
 WORKDIR /app

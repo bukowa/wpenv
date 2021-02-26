@@ -1,24 +1,41 @@
 GOLANG_TAG?=wpenv_proto_golang
 PYTHON_TAG?=wpenv_proto_python
+GRPC_TAG?=wpenv_proto_grpc
 
-all: build_golang build_python make_golang make_python
+all: build_golang build_python gen_golang gen_python build_grpc_gateway gen_grpc_gateway
+build: build_golang build_grpc_gateway build_python
+gen: gen_golang gen_python gen_grpc_gateway
 
 build_golang:
 	docker build --tag=${GOLANG_TAG} \
-		-f golang.Dockerfile .
+		-f ./scripts/golang.Dockerfile .
 
 build_python:
 	docker build --tag=${PYTHON_TAG} \
-		-f python.Dockerfile .
+		-f ./scripts/python.Dockerfile .
 
-make_golang:
-	docker run --rm --volume=${PWD}:/app/models \
+build_grpc_gateway: build_golang
+	docker build --tag=${GRPC_TAG} \
+		--build-arg GO_GRPC_TAG=${GOLANG_TAG} \
+		-f ./scripts/grpc.Dockerfile .
+
+gen_grpc_gateway:
+	docker run --rm --volume=${PWD}:/app \
+		${GRPC_TAG} \
+	-I . --grpc-gateway_out ./go \
+    --grpc-gateway_opt logtostderr=true \
+    --grpc-gateway_opt generate_unbound_methods=true \
+    ./user.proto
+
+gen_golang:
+	docker run --rm --volume=${PWD}:/app \
 		${GOLANG_TAG} \
-		-I=. --go_out=. --go-grpc_out=. ./models/user.proto
+		-I=. --go_out=./go --go-grpc_out=./go user.proto
 
-make_python:
-	docker run --rm --volume=${PWD}:/app/models \
+gen_python:
+	docker run --rm --volume=${PWD}:/app \
 		${PYTHON_TAG} \
-		-I=. --python_out=. --grpc_python_out=. ./models/user.proto
+		-I=. --python_out=./python/gen --grpc_python_out=./python/gen user.proto
 
-.PHONY: golang python
+
+.PHONY: all build gen

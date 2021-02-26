@@ -3,7 +3,7 @@ package models;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "./models";
+option go_package = "./gen";
 
 message User {
     string name = 1;

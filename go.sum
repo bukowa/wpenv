@@ -1,5 +1,7 @@
 github.com/bukowa/pkgo v0.0.1-beta.2 h1:sBR2O/u7BYU2k0K///GOOOE9VjiGrcR20wjQZ5Sax2A=
 github.com/bukowa/pkgo v0.0.1-beta.2/go.mod h1:2UXzB7ebO5Ag4X1oQa1mWNGnLQbPVfaoldBZizT2Xfg=
+github.com/bukowa/wdgo v0.0.0-20210327230240-cc47cdd2cada h1:K455vTPb8l1uV46XdN30xYGYNSUyKFI/O3jL9qwFedg=
+github.com/bukowa/wdgo v0.0.0-20210327230240-cc47cdd2cada/go.mod h1:CMXdo6aP9dPTfWzjL/+vJXU9OLmw67s/Se61Utjv/70=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=

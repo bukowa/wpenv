@@ -18,7 +18,7 @@ jobs:
         run: |
           mkdir -p $HOME/.local/bin
           echo "$HOME/.local/bin" >> $GITHUB_PATH
-          curl -L https://github.com/rancher/k3d/releases/download/v4.2.0/k3d-linux-amd64 --output k3d-linux-amd64
+          curl -L https://github.com/rancher/k3d/releases/download/v4.4.4/k3d-linux-amd64 --output k3d-linux-amd64
           mv k3d-linux-amd64 $HOME/.local/bin/k3d
           chmod +x $HOME/.local/bin/k3d
       

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eo pipefail
+set -euxo pipefail
 
 NAMESPACE="ingress-nginx"
 
@@ -8,15 +8,15 @@ if [ "$1" == "" ]; then
   exit 1
 fi
 
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-helm repo ls
+helm --kube-context=k3d-wpenv repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm --kube-context=k3d-wpenv repo update
+helm --kube-context=k3d-wpenv repo ls
 
-kubectl create namespace $NAMESPACE || true
+kubectl --context=k3d-wpenv create namespace $NAMESPACE || true
 
 if [ "$1" == "install" ]; then
   echo "Installing..."
-  helm install \
+  helm --kube-context=k3d-wpenv install \
     nginx-ingress ingress-nginx/ingress-nginx \
     --namespace $NAMESPACE \
     -f nginx-ingress.values.yaml
@@ -25,7 +25,7 @@ fi
 
 if [ "$1" == "upgrade" ]; then
   echo "Upgrading..."
-  helm upgrade \
+  helm --kube-context=k3d-wpenv upgrade \
     nginx-ingress ingress-nginx/ingress-nginx \
     --namespace $NAMESPACE \
     -f nginx-ingress.values.yaml
@@ -34,7 +34,7 @@ fi
 
 if [ "$1" == "uninstall" ]; then
   echo "Uninstalling..."
-  helm uninstall -n $NAMESPACE \
+  helm --kube-context=k3d-wpenv uninstall -n $NAMESPACE \
     nginx-ingress
   exit 0
 fi
